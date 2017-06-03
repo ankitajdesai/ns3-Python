@@ -97,6 +97,10 @@ d0d2 = p2p.Install (n0n2)
 d1d6 = p2p.Install (n1n6)
 
 d1d2 = p2p.Install(n1n2)
+   
+p2p.SetDeviceAttribute ("DataRate", ns.core.StringValue ("1500kbps"))
+p2p.SetChannelAttribute ("Delay", ns.core.StringValue ("10ms"))
+d5d6 = p2p.Install (n5n6)
 
 //#We create the channels first without any IP addressing information
 csma = ns.csma.CsmaHelper()
