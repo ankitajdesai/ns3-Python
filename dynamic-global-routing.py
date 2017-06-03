@@ -69,10 +69,10 @@ import ns.internet
 import ns.point_to_point
 import ns.applications
 import sys
-#import ns.ipv4-global-routing-helper
+//import ns.ipv4-global-routing-helper
 
-#Allow the user to override any of the defaults and the above
-#Bind ()s at run-time, via command-line arguments'''
+//Allow the user to override any of the defaults and the above
+//Bind ()s at run-time, via command-line arguments'''
 cmd= ns.internet.CommandLine()
 cmd.Parse(sys.argv)
 
@@ -88,7 +88,7 @@ n2345 = NodeContainer (c.Get(2) , c.Get(3) , c.Get(4) , c.Get(5))
 internet = ns.internet.InternetStackHelper()
 internet.Install(c)
 
-#We create the channels first without any IP addressing information
+//We create the channels first without any IP addressing information
 print "Create channels.";
 p2p = ns.point_to_point.PointToPointHelper()
 p2p.SetDeviceAttribute ("DataRate" , ns.core.StringValue("5Mbps"))
@@ -98,13 +98,13 @@ d1d6 = p2p.Install (n1n6)
 
 d1d2 = p2p.Install(n1n2)
 
-#We create the channels first without any IP addressing information
+//#We create the channels first without any IP addressing information
 csma = ns.csma.CsmaHelper()
 csma.SetChannelAttribute ("DataRate" , ns.core.StringValue("5Mbps"))
 csma.SetChannelAttribute ("Delay" , ns.core.StringValue("2ms"))
 d2345 = csma.Install (n2345)
 
-#Later, we add IP addresses.
+//#Later, we add IP addresses.
 print "Assign IP Addresses."
 ipv4 = ns.internet.Ipv4AddressHelper()
 ipv4.SetBase (ns.network.Ipv4Address("10.1.1.0"),ns.network.Ipv4Mask("255.255.255.0"))
@@ -122,15 +122,15 @@ ipv4.Assign (d2345);
 ipv4.SetBase (ns.network.Ipv4Address("172.16.1.0"),ns.network.Ipv4Mask("255.255.255.0"))
 i1i6 = ipv4.Assign (d1d6);
 
-#Create router nodes, initialize routing database and set up the routing
-#tables in the nodes.
+//#Create router nodes, initialize routing database and set up the routing
+//#tables in the nodes.
 
 ns.internet.Ipv4GlobalRoutingHelper.PopulateRoutingTables()
 
-# Create the OnOff application to send UDP datagrams of size
-# 210 bytes at a rate of 448 Kb/s
+//# Create the OnOff application to send UDP datagrams of size
+//# 210 bytes at a rate of 448 Kb/s
 
-    print "Create Applications."
+print "Create Applications."
 port = uint16_t (9)  #Discard port (RFC 863)
 onoff = ns.applications.OnOffHelper()
 onoff.InetSocketAddress ("ns3::UdpSocketFactory",i5i6.GetAddress (1),port)
@@ -141,8 +141,7 @@ apps = onoff.Install (c.Get(1))
 apps.Start (ns.Seconds (1.0))
 apps.Stop (ns.Seconds (16.0))
 
-
-#Create a second OnOff application to send UDP datagrams of size 210 bytes at a rate of 448 Kb/s
+//#Create a second OnOff application to send UDP datagrams of size 210 bytes at a rate of 448 Kb/s
 onoff2 = ns.applications.OnOffHelper()
 onoff2.InetSocketAddress (i1i6.GetAddress(1),port)
 onoff2.SetAttribute ("OnTime",ns.core.Stringvalue("ns3::ConstantRandomVariable[Constant=1]"))
@@ -154,7 +153,7 @@ apps2 = onoff2.Install (c.Get(1))
 apps2.Start(ns.Seconds (11.0))
 aps2.Stop (ns.Seconds (16.0))
 
-#Create an optional packet sink to receive these packets
+//#Create an optional packet sink to receive these packets
 sink = ns.applications.PacketSinkHelper("ns3::UdpSocketFactory",
                                         ns.network.Address(ns.network.InetSocketAddress(ns.network.Ipv4Address.GetAny(), port)))
 apps = sink.Install(ns.network.NodeContainer(c.Get(6)))
@@ -169,7 +168,7 @@ apps2.Stop (ns.Seconds (16.0))
 
 ascii = ns.internet.AsciiTraceHelper()
 
-'''stream = (OutputStreamWrapper) ascii.CreateFileStream ("dynamic-global-routing.tr")'''
+//'''stream = (OutputStreamWrapper) ascii.CreateFileStream ("dynamic-global-routing.tr")'''
 
 p2p.EnableAsciiAll (ascii.CreateFileStream ("dynamic-global-routing.tr"))
 csma.EnableAsciiAll (ascii.CreateFileStream ("dynamic-global-routing.tr"))
@@ -178,15 +177,15 @@ internet.EnableAsciiIpv4All (ascii.CreateFileStream ("dynamic-global-routing.tr"
 p2p.EnablePcapAll ("dynamic-global-routing")
 csma.EnablePcapAll ("dynamic-global-routing", False)
 
-'''(Node)n1 = c.Get (1)
-(Ipv4)ipv41 = (Ipv4)n1.GetObject()'''
+//'''(Node)n1 = c.Get (1)
+//(Ipv4)ipv41 = (Ipv4)n1.GetObject()'''
 
 n1 = c.Get(1)
 ipv41 = n1.GetObject(ns.network.Ipv4)
 
-#The first ifIndex is 0 for loopback, then the first p2p is numbered 1,
-#then the next p2p is numbered 2
-'''ipv4ifIndex1 = uint32_t(2)'''
+//#The first ifIndex is 0 for loopback, then the first p2p is numbered 1,
+//#then the next p2p is numbered 2
+//'''ipv4ifIndex1 = uint32_t(2)'''
 
 ipv4ifIndex1 = 2
 ns.core.Simulator.Schedule (ns.Seconds (6),&Ipv4::SetDown,ipv41, ipv4ifIndex1)
@@ -195,15 +194,15 @@ ns.core.Simulator.Schedule (ns.Seconds (4),&Ipv4::SetUp,ipv46, ipvifIndex1)
 n6 = c.Get (6);
 ipv46 = n6.Ipv4.GetObject()
 
-#The first ifIndex is 0 for loopback, then the first p2p is numbered 1,
-#then the next p2p is numbered 2
+//#The first ifIndex is 0 for loopback, then the first p2p is numbered 1,
+//#then the next p2p is numbered 2
 ipv4ifIndex6 = uint32_t(2)
 ns.core.Simulator.Schedule (ns.Seconds (6),&Ipv4::SetDown,ipv46, ipv4ifIndex6)
 ns.core.Simulator.Schedule (ns.Seconds (8),&Ipv4::SetUp,ipv46, ipv4ifIndex6)
 
-#Trace routing tables
+//#Trace routing tables
 g = ns.internet.Ipv4GlobalRoutingHelper()
-'''(OutputStreamWrapper) routingStream = Create(OutputStreamWrapper) ("dynamic-global-routing.routes", std::ios::out);''''
+//'''(OutputStreamWrapper) routingStream = Create(OutputStreamWrapper) ("dynamic-global-routing.routes", std::ios::out);''''
 g.PrintRoutingTableAllAt (ns.Seconds (12), routingStream)
 
 print "Run Simulation."
