@@ -131,7 +131,7 @@ ns.internet.Ipv4GlobalRoutingHelper.PopulateRoutingTables()
 //# 210 bytes at a rate of 448 Kb/s
 
 print "Create Applications."
-port = uint16_t (9)  #Discard port (RFC 863)
+port = uint16_t (9)  //#Discard port (RFC 863)
 onoff = ns.applications.OnOffHelper()
 onoff.InetSocketAddress ("ns3::UdpSocketFactory",i5i6.GetAddress (1),port)
 onoff.SetConstantRate (DataRate ("2kbps"))
