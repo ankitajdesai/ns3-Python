@@ -61,7 +61,6 @@
 //  At time 16s, stop the second flow.
 
 // - Tracing of queues and packet receptions to file "dynamic-global-routing.tr"
-'''
 
 import ns.core
 import ns.network
