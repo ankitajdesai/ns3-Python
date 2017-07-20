@@ -1,4 +1,4 @@
-# * -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*- */
+# * -*- Mode:C++; c-file-style:"gnu"; indent-tabs-mode:nil; -*
 # *
 # * Copyright (c) 2015 - Chip Webb
 # *
@@ -231,6 +231,12 @@
 #// Author:     Chip Webb <ns3 (a) chipwebb dot com>                       
 # // ###################################################################### 
 
+#Porting to python is done as an assignment work by 
+#    Hindustani Modi
+#    Karan Shah
+#    Ronak Ginodiya
+#    Mohit Mavani
+#and mentor by Ms. Ankita J. Desai of C. G. Patel Institute of Technology, Bardoli.
 
 import ns.core
 import ns.internet_apps
