@@ -47,6 +47,11 @@
 # // 3) nothing, when the Echo Request has been received by the destination but
 # //    the Echo Reply is unable to reach the sender.
 # // Examining the .pcap files with Wireshark can confirm this effect.*/  '''
+'''Porting to python is done as an assignment work by 
+	Mayur Bhadani
+	Harshal Patel
+	Raj Shah
+and mentor by Ms. Ankita J. Desai'''
 
 import ns.core
 import ns.internet
