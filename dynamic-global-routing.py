@@ -62,6 +62,12 @@
 
 # - Tracing of queues and packet receptions to file "dynamic-global-routing.tr"
 
+#Porting to python is done as an assignment work by 
+#    Yashesh Savani
+#    Harshal Patel
+#    Deep Desai
+#and mentor by Ms. Ankita J. Desai of C. G. Patel Institute of Technology, Bardoli.
+
 import ns.network
 import ns.core
 import ns.csma
