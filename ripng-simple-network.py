@@ -51,7 +51,7 @@
 	Mayur Bhadani
 	Harshal Patel
 	Raj Shah
-and mentor by Ms. Ankita J. Desai'''
+and mentor by Ms. Ankita J. Desai of C. G. Patel Institute of Technology, Bardoli.'''
 
 import ns.core
 import ns.internet
